@@ -76,7 +76,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<fileName>SpringBootsMongo</fileName>
+		<finalName>SpringBootsMongo</finalName>
 	</build>
 	<repositories>
 		<repository>
