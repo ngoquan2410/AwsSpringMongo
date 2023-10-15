@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.demo.service.CustomUserDetailsService;
 
@@ -34,10 +35,21 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().antMatcher("/signin").antMatcher("role/*").authorizeRequests().antMatchers("/signin")
-				.permitAll().antMatchers("/role/*").hasAnyRole("ADMIN").antMatchers("/signup").permitAll().antMatchers("/users/registration").permitAll()
-				.anyRequest().authenticated().and().formLogin().successHandler(customizeAuthenticationSuccessHandler)
-				.and().httpBasic().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http 
+			.authorizeRequests()
+	        .antMatchers("/").permitAll()
+	        .antMatchers("/home").permitAll()
+	        .antMatchers("/login").permitAll()
+	        .antMatchers("/signup").permitAll()
+	        .antMatchers("/dashboard/**").hasAuthority("ADMIN")
+	        .antMatchers("/role/*").hasAuthority("ADMIN").anyRequest()
+	        .authenticated().and().csrf().disable().formLogin().successHandler(customizeAuthenticationSuccessHandler)
+	        .loginPage("/login").failureUrl("/login?error=true")
+	        .usernameParameter("email")
+	        .passwordParameter("password")
+	        .and().logout()
+	        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	        .logoutSuccessUrl("/").and().exceptionHandling();
 
 		return http.build();
 	}

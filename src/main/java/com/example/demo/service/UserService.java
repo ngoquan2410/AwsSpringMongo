@@ -34,8 +34,12 @@ public class UserService {
 		user.setEnabled(true);
 		user.setFullname(request.getFullname());
 		user.setPassword(bCryptPasswordEncoder().encode(request.getPassword()));
-		Role userRole = roleRepository.findByRole(request.getRoleName());
+		Role userRole = roleRepository.findByRole("ADMIN");
 		user.setRoles(new HashSet<>(Arrays.asList(userRole)));
 		return userRepository.save(user);
+	}
+	
+	public User findUserByEmail(String userName) {
+		return userRepository.findByEmail(userName);
 	}
 }
