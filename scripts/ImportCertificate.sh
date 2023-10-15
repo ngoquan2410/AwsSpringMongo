@@ -1,4 +1,5 @@
 cd ..
+cd ..
 mydir=tmp/certs
 if [ ! -e "${mydir}" ]
 then
