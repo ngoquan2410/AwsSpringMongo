@@ -10,4 +10,6 @@ phases:
 artifacts:
   files:
     - target/SpringBootsMongo.jar
+    - scripts/*.sh
+    - appspec.yml
   discard-paths: yes
