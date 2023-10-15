@@ -12,3 +12,4 @@ artifacts:
     - target/SpringBootsMongo.jar
     - scripts/*.sh
     - appspec.yml
+    - customs
