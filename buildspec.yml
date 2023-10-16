@@ -13,4 +13,4 @@ artifacts:
     - scripts/*.sh
     - appspec.yml
     - customs.json
-    - ssl/AwsSpringMongoKey1.pem
+    - ssl/global-bundle.pem
