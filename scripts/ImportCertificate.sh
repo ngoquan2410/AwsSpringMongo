@@ -1,8 +1,6 @@
-cd ..
-cd .. 
 mydir=/tmp/certs
 truststore=${mydir}/rds-truststore.jks
-storepassword=<truststorePassword>
+storepassword=changeit
 
 curl -sS "https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem" > ${mydir}/global-bundle.pem
 awk 'split_after == 1 {n++;split_after=0} /-----END CERTIFICATE-----/ {split_after=1}{print > "rds-ca-" n ".pem"}' < ${mydir}/global-bundle.pem
