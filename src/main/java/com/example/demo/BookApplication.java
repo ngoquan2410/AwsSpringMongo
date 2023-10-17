@@ -53,7 +53,7 @@ public class BookApplication {
 
 	 protected static class SSLContextHelper {
 		private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-		private static final String DEFAULT_SSL_CERTIFICATE = "global-bundle.pem";
+		private static final String DEFAULT_SSL_CERTIFICATE = "rds-combined-ca-bundle.pem";
 		private static final String SSL_CERTIFICATE = "sslCertificate";
 		private static final String KEY_STORE_TYPE = "JKS";
 		private static final String KEY_STORE_PROVIDER = "SUN";

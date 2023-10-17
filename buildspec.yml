@@ -13,4 +13,4 @@ artifacts:
     - scripts/*.sh
     - appspec.yml
     - customs.json
-    - ssl/global-bundle.pem
+    - ssl/*.pem
